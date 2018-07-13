@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+        window.onload = () => {
+            const Title = (props) => {
+                const {
+                    text,
+                    style
+                } = props; // A little bit of destructuring
+                return React.createElement('h1', {
+                    style
+                }, text);
+            }
+
+            const elem = React.createElement('div', null,
+                React.createElement(Title, {
+                    style: {
+                        backgroundColor: 'blue',
+                        color: 'white',
+                        display: 'inline-block'
+                    },
+                    text: 'White on blue!'
+                }),
+                React.createElement(Title, {
+                    style: {
+                        backgroundColor: 'red',
+                        color: 'blue',
+                        display: 'inline-block'
+                    },
+                    text: 'blue on red'
+                }),
+                React.createElement(Title, {
+                    style: {
+                        backgroundColor: 'pink',
+                        color: 'green',
+                        display: 'inline-block'
+                    },
+                    text: 'green on pink'
+                }),
+            );
+            ReactDOM.render(elem, document.getElementById('app'));
+        }
+    </script>
+    <title>Composable Squares</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>

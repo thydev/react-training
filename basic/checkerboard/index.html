@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <title>Checkerboard</title>
+</head>
+
+<body>
+    <!-- <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        ReactDOM.render(    
+        <h1>Hello!</h1>, document.getElementById('app') );
+    </script> -->
+    <div>
+        <input id="numrow" type="number" aria-valuemin="1" min="1" value="1" autofocus>
+        <button id="btnGenerate">Generate Board</button>
+    </div>
+    <div id="board"></div>
+    <script>
+        window.onload = () => {
+            var styles = {
+                row: {
+                    height: '20px'
+                },
+                cell: {
+                    height: '20px',
+                    width: '20px',
+                    display: 'inline-block'
+                },
+                colorA: {
+                    backgroundColor: 'black'
+                },
+                colorB: {
+                    backgroundColor: 'red'
+                }
+            }
+            const btnGenerate = document.getElementById('btnGenerate');
+            btnGenerate.addEventListener('click', generateBoard);
+
+            function generateBoard() {
+                const num = document.querySelector('#numrow').value;
+                const board = React.createElement(CheckerBoard, {
+                    styles,
+                    row: num
+                });
+                console.log(board)
+                ReactDOM.render(board, document.getElementById('board'));
+            }
+
+            const CheckerBoard = (props) => {
+                let board = [];
+
+                for (let idx = 0; idx < props.row; idx++) {
+                    const startColor = idx % 2 === 0 ? props.styles.colorA.backgroundColor :
+                        props.styles.colorB.backgroundColor;
+                    board.push(React.createElement(Row, {
+                        ...props,
+                        startColor
+                    }));
+                }
+                return React.createElement('div', null, ...board);
+            }
+
+            const Row = (props) => {
+                let rowElement = [];
+                let color = props.startColor;
+                for (let idx = 0; idx < props.row; idx++) {
+                    color = color === props.styles.colorA.backgroundColor ?
+                        props.styles.colorB.backgroundColor : props.styles.colorA.backgroundColor;
+                    let cellStyle = props.styles.cell;
+                    cellStyle.backgroundColor = color;
+                    rowElement.push(React.createElement(Cell, {
+                        style: {
+                            // Passing by value. Do not pass by ref
+                            // When passing by ref it will have only one value at the end of the loop
+                            ...cellStyle
+                        }
+                    }));
+                }
+
+                return React.createElement('div', {
+                        style: props.styles.row
+                    },
+                    ...rowElement
+                )
+            }
+
+            function Cell(props) {
+                return React.createElement('div', props);
+            }
+
+            let cellStyle = styles.cell;
+            cellStyle.backgroundColor = styles.colorA.backgroundColor;
+            const board = React.createElement(Cell, {
+                style: cellStyle
+            });
+            // const row = React.createElement(Row, styles);
+            // ReactDOM.render(row, document.getElementById('board'));
+
+        }
+    </script>
+</body>
+
+</html>
