@@ -14,7 +14,18 @@ class Note extends Component {
     this.save = this.save.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.renderDisplay = this.renderDisplay.bind(this);
+
+    this.randomBetween = this.randomBetween.bind(this);
   }
+
+  componentWillMount() {
+    this.style = {
+      right: this.randomBetween(0, window.innerWidth - 150, 'px'),
+      top: this.randomBetween(0, window.innerHeight - 150, 'px'),
+      transform: `rotate(${this.randomBetween(-25, 25, 'deg')})`
+    };
+  }
+
   edit() {
     console.log('editing');
     this.setState({
@@ -23,19 +34,46 @@ class Note extends Component {
   }
 
   remove() {
-    alert('remove');
+    this.props.onRemove(this.props.index);
   }
 
-  save() {
-    alert('save');
+  save(e) {
+    e.preventDefault();
+    // alert(this._newText.value);
+    this.props.onChange(this._newText.value, this.props.index);
+    this.setState({
+      editing: false
+    });
+  }
+
+  randomBetween(x, y, s) {
+    return x + Math.ceil(Math.random() * (y - x)) + s;
+  }
+
+  componentDidUpdate() {
+    var textArea;
+    if (this.state.editing) {
+      textArea = this._newText;
+      // textArea.focus();
+      textArea.select();
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // if sth has been changed then re-render, else do nothing
+    return this.props.children !== nextProps || this.state !== nextState;
   }
 
   renderForm() {
     return (
-      <div className="note">
-        <form>
-          <textarea />
-          <button id="save" onClick={this.save}>
+      <div className="note" style={this.style}>
+        <form onSubmit={this.save}>
+          <textarea
+            ref={input => (this._newText = input)}
+            autoFocus
+            defaultValue={this.props.children}
+          />
+          <button id="save">
             <FaFloppy0 />
           </button>
         </form>
@@ -45,8 +83,8 @@ class Note extends Component {
 
   renderDisplay() {
     return (
-      <div className="note">
-        <p>Learn React</p>
+      <div className="note" style={this.style}>
+        <p>{this.props.children}</p>
         <span>
           <button id="edit" onClick={this.edit}>
             <FaPencil />
