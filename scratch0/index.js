@@ -1,8 +1,6 @@
 import path from 'path';
+import log from './log';
 
-const log = string => {
-  console.log(string);
-};
 console.log('hi');
 
 log('Hello');
