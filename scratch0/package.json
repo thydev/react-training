@@ -1,0 +1,10 @@
+{
+  "name": "scratch0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "thydev",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./index.js"
+  }
+}
