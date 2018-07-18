@@ -4,20 +4,61 @@ import RecipeList from './RecipeList.js';
 import RecipeDetail from './RecipeDetail.js';
 
 // fetch(process.env.API_URL + '/v1/recipes')
-fetch(`${API_URL}/v1/recipes`) // webpack do already did a hard job
-  .then(res => res.json())
-  .then(json => console.log(json));
+// fetch(`${API_URL}/v1/recipes`) // webpack already did a hard job
+//   .then(res => res.json())
+//   .then(json => console.log(json));
 
-const App = () => {
-  return (
-    <div>
-      <Header />
-      <main style={{ display: 'flex' }}>
-        <RecipeList style={{ flex: 3 }} />
-        <RecipeDetail style={{ flex: 4 }} />
-      </main>
-    </div>
-  );
-};
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      recipes: [],
+      currentRecipe: null
+    };
+    // this.onRecipeClick = this.onRecipeClick.bind(this);
+    // use arrow function to get rid of this bind but need to add babel-preset-stage-0
+    // yarn add babel-preset-stage-0
+  }
+
+  componentDidMount() {
+    fetch(`${API_URL}/v1/recipes`) // webpack already did a hard job
+      .then(res => res.json())
+      .then(recipes => {
+        this.setState({
+          recipes
+        });
+      });
+  }
+
+  onRecipeClick = id => {
+    console.log(id);
+    fetch(`${API_URL}/v1/recipes/${id}`) // webpack already did a hard job
+      .then(res => res.json())
+      .then(currentRecipe => {
+        console.log(currentRecipe);
+        this.setState({
+          currentRecipe
+        });
+      });
+  };
+
+  render() {
+    const { recipes, currentRecipe } = this.state;
+    return (
+      <div>
+        <Header />
+        <main style={{ display: 'flex' }}>
+          <RecipeList
+            style={{ flex: 3 }}
+            recipes={recipes}
+            onClick={this.onRecipeClick}
+          />
+          <RecipeDetail style={{ flex: 4 }} recipe={currentRecipe} />
+        </main>
+      </div>
+    );
+  }
+}
 
 export default App;
