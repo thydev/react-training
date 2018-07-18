@@ -3,6 +3,11 @@ import Header from './Header.js';
 import RecipeList from './RecipeList.js';
 import RecipeDetail from './RecipeDetail.js';
 
+// fetch(process.env.API_URL + '/v1/recipes')
+fetch(`${API_URL}/v1/recipes`) // webpack do already did a hard job
+  .then(res => res.json())
+  .then(json => console.log(json));
+
 const App = () => {
   return (
     <div>
