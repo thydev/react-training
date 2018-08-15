@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 const Header = () => (
-  <header>
-    <h1 className="blue">My Recipes</h1>
+  <header className="px4">
+    <h1 className="h1">&#x1F372; My Recipes</h1>
   </header>
 );
 

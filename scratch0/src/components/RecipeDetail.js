@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
-const RecipeDetail = ({ style, recipe }) => {
+const RecipeDetail = ({ style, recipe, className }) => {
   if (!recipe) {
     return (
-      <div style={style}>
-        <h2>Please select the reciep to see the detail.</h2>
-      </div>
+      <p
+        style={style}
+        className={classNames('h3 p2 bg-white italic center', className)}
+      >
+        Please select the reciep to see the detail.
+      </p>
     );
   }
 
   return (
-    <div style={style}>
+    <div style={style} className={classNames('p2 bg-white', className)}>
       <h2 className="h2">{recipe.name}</h2>
       <div className="flex flex-column">
         <img alt={recipe.name} className="fit" src={recipe.image} />
@@ -21,12 +25,20 @@ const RecipeDetail = ({ style, recipe }) => {
 
         <div>
           <h3>Ingredients</h3>
-          <ul>{recipe.ingredients.map(ing => <li key={ing}>{ing}</li>)}</ul>
+          <ul>
+            {recipe.ingredients.map(ing => (
+              <li key={ing}>{ing}</li>
+            ))}
+          </ul>
         </div>
 
         <div>
           <h3>Steps</h3>
-          <ol>{recipe.steps.map(step => <li key={step}>{step}</li>)}</ol>
+          <ol>
+            {recipe.steps.map(step => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
         </div>
       </div>
     </div>
