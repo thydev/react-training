@@ -18,11 +18,7 @@ const RecipeDetail = ({ style, recipe, className }) => {
         <img alt={recipe.name} className="fit" src={recipe.image} />
         <div>
           <span>{recipe.category}</span>
-          <span>
-            {recipe.calories}
-            {' '}
-cal
-          </span>
+          <span>{recipe.calories} cal</span>
         </div>
 
         <div>
