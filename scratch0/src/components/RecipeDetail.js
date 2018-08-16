@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import classNames from 'classnames';
 
 const RecipeDetail = ({ style, recipe, className }) => {
@@ -38,6 +40,7 @@ const RecipeDetail = ({ style, recipe, className }) => {
             ))}
           </ol>
         </div>
+        <Link to={`/recipe/${recipe.id}`}>See more</Link>
       </div>
     </div>
     /* <div style={style} className={classNames('p2 bg-white', className)}>

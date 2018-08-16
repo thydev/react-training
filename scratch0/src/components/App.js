@@ -5,6 +5,7 @@ import {
 import Header from './Header';
 import Home from './Home';
 import Favorites from './Favorites';
+import Recipe from './Recipe';
 import NotFound from './NotFound';
 
 class App extends React.Component {
@@ -54,6 +55,7 @@ class App extends React.Component {
               path="/favorites"
               render={() => <Favorites state={this.state} toggleFavorite={this.toggleFavorite} />}
             />
+            <Route path="/recipe/:id" component={Recipe} />
             <Route component={NotFound} />
           </Switch>
         </main>

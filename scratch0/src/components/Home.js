@@ -33,6 +33,7 @@ class Home extends React.Component {
 
   render() {
     const { currentRecipe } = this.state;
+    const { toggleFavorite } = this.props;
     const { recipes, favorites } = this.props.state;
     return (
       <div style={{ flex: 3 }}>
@@ -43,7 +44,7 @@ class Home extends React.Component {
               recipes={recipes}
               favorites={favorites}
               onClick={this.onRecipeClick}
-              onFavorited={this.props.toggleFavorite}
+              onFavorited={toggleFavorite}
             />
           </div>
           <RecipeDetail className="ml4" style={{ flex: 5 }} recipe={currentRecipe} />

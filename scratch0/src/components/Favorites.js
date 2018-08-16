@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import RecipeList from './RecipeList';
 
 const Favorites = ({ state, toggleFavorite }) => (
@@ -11,5 +12,10 @@ const Favorites = ({ state, toggleFavorite }) => (
     />
   </div>
 );
+
+Favorites.propTypes = {
+  state: PropTypes.object,
+  toggleFavorite: PropTypes.func,
+};
 
 export default Favorites;
