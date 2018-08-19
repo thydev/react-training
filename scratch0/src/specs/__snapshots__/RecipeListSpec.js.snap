@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RecipeList /> Should not break when no recipes passed 1`] = `
+<ul
+  className="list-reset"
+/>
+`;
+
+exports[`<RecipeList /> Should render favorite state correctly 1`] = `
+<ul
+  className="list-reset"
+/>
+`;
+
+exports[`<RecipeList /> Should render recipes correctly 1`] = `
+<ul
+  className="list-reset"
+>
+  <li
+    className="py2 border-bottom border-bottom-dashed pointer"
+    onClick={[Function]}
+  >
+    <span
+      aria-label="favorite"
+      className="mr1"
+      onClick={[Function]}
+      role="img"
+    >
+      ⬜️
+    </span>
+    <span>
+      Test recipe1
+    </span>
+    <span>
+      Test category1
+    </span>
+  </li>
+  <li
+    className="py2 border-bottom border-bottom-dashed pointer"
+    onClick={[Function]}
+  >
+    <span
+      aria-label="favorite"
+      className="mr1"
+      onClick={[Function]}
+      role="img"
+    >
+      ⬜️
+    </span>
+    <span>
+      Test recipe2
+    </span>
+    <span>
+      Test category2
+    </span>
+  </li>
+</ul>
+`;
