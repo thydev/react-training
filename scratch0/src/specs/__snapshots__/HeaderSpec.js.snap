@@ -4,6 +4,12 @@ exports[`<Header /> Should render correctly 1`] = `
 <header
   className="flex items-center justify-between px4"
 >
+  <div>
+    <img
+      alt="Logo Orange"
+      src="test-file-stub"
+    />
+  </div>
   <h1
     className="h1"
   >

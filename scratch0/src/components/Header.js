@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Logo from '../static/images/logo.png';
 
 const HeaderLink = ({ children, ...props }) => (
   <NavLink
@@ -15,6 +16,9 @@ const HeaderLink = ({ children, ...props }) => (
 
 const Header = () => (
   <header className="flex items-center justify-between px4">
+    <div>
+      <img src={Logo} alt="Logo Orange" />
+    </div>
     <h1 className="h1">
       <span role="img">&#x1F372;</span> My Recipes
     </h1>
